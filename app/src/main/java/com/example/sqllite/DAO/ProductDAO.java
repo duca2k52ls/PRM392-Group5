@@ -15,18 +15,23 @@ public interface ProductDAO {
     @Query("SELECT * FROM Products")
     List<Products> getAll();
 
-    @Query("SELECT * FROM Products WHERE ProductID IN (:productId)")
+    @Query("SELECT * FROM Products WHERE ProductID LIKE :productId")
     Products getByIds(int productId);
 
     @Query("SELECT * FROM Products WHERE ProductID LIKE :productId AND " +
-            "ProductName LIKE :productName")
-    Products findByName(String productId, String productName);
+            "ProductName LIKE '%' || :productName || '%' ")
+    Products findByName(int productId, String productName);
+
+    @Query("SELECT * FROM Products WHERE ProductName LIKE '%' || :productName || '%' ")
+    Products findByOnlyName(String productName);
+
+    @Query("SELECT * FROM Products WHERE ProductID LIKE :productId ")
+    Products findByOnlyID(int productId);
 
     @Insert
     void insertAllProducts(Products... products);
 
     @Update
-    void updateProduct (Products product);
 
     @Delete
     void deleteProduct (Products product);
