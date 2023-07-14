@@ -30,6 +30,10 @@ public class Products {
     public Products() {
     }
 
+    public Products(int productID, String productImage){
+        ProductID = productID;
+        ProductImage = productImage;
+    }
     public Products(int productID, String productName, int supplierID, int categoryID, int quantityPerUnit, double unitPrice, String productImage) {
         ProductID = productID;
         ProductName = productName;

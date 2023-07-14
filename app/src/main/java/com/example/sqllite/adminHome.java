@@ -21,6 +21,7 @@ import java.util.List;
 
 public class adminHome extends AppCompatActivity {
     LinearLayout imageLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class adminHome extends AppCompatActivity {
             public void run() {
                 ProductDAO productDao = db.productDAO();
                 List<Products> products = productDao.getAll();
-                List<String> imageUrlList = new ArrayList<>();
+                imageUrlList.clear(); // Xóa các phần tử cũ trong danh sách
                 for (Products product : products) {
                     // Lấy giá trị string từ cột string của products
                     String imageUrl = product.getProductImage();
@@ -45,10 +46,25 @@ public class adminHome extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        for (String imageUrl : imageUrlList) {
+                        imageLayout.removeAllViews(); // Xóa các ImageView cũ trong layout
+                        for (int i = 0; i < imageUrlList.size(); i++) {
+                            String imageUrl = imageUrlList.get(i);
+                            int productId = products.get(i).getProductID();
                             ImageView imageView = new ImageView(adminHome.this);
-                            Picasso.get().load(imageUrl).into(imageView);
+                            Picasso.get().load(imageUrl).resize(500, 200).into(imageView);
                             imageLayout.addView(imageView);
+
+                            imageView.setTag(productId); // Gắn ID sản phẩm vào ImageView
+                            imageView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    int productId = (int) v.getTag(); // Lấy ID sản phẩm từ ImageView
+                                    // Chuyển sang activity mới và truyền ID sản phẩm
+                                    Intent intent = new Intent(adminHome.this, ProductDetail.class);
+                                    intent.putExtra("product_id", productId);
+                                    startActivity(intent);
+                                }
+                            });
                         }
                     }
                 });
