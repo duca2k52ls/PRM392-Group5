@@ -27,6 +27,9 @@ public class Products {
     @ColumnInfo(name = "ProductImage")
     private String ProductImage;
 
+    public Products() {
+    }
+
     public Products(int productID, String productName, int supplierID, int categoryID, int quantityPerUnit, double unitPrice, String productImage) {
         ProductID = productID;
         ProductName = productName;

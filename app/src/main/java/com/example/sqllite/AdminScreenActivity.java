@@ -3,6 +3,7 @@ package com.example.sqllite;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -111,6 +112,20 @@ public class AdminScreenActivity extends AppCompatActivity {
                                 Integer.parseInt(edt_QuantityPerUnit.getText().toString()),
                                 Double.parseDouble(edt_UnitPrice.getText().toString()),
                                 edt_ProductImage.getText().toString()));
+                    }
+                });
+                t.start();
+            }
+        });
+
+        ((Button)findViewById(R.id.btn_Home)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(AdminScreenActivity.this, adminHome.class);
+                        startActivity(intent);
                     }
                 });
                 t.start();

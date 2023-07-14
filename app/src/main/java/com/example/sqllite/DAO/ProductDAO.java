@@ -31,8 +31,6 @@ public interface ProductDAO {
     @Insert
     void insertAllProducts(Products... products);
 
-    @Update
-
     @Delete
     void deleteProduct (Products product);
 }
