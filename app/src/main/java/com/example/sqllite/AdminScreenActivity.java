@@ -33,7 +33,7 @@ public class AdminScreenActivity extends AppCompatActivity {
         edt_UnitPrice = findViewById(R.id.Proprice_txt3);
         edt_ProductImage = findViewById(R.id.Proimage_txt4);
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
+                AppDatabase.class, "database-name-v2").build();
 
         ((Button)findViewById(R.id.btn_add)).setOnClickListener(new View.OnClickListener() {
             @Override

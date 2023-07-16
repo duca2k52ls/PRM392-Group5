@@ -2,114 +2,104 @@ package com.example.sqllite.Models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.Relation;
 
-@Entity
+@Entity(tableName = "products",
+        foreignKeys = {
+                @ForeignKey(entity = Firm.class, parentColumns = "firmID", childColumns = "supplierID"),
+                @ForeignKey(entity = Categories.class, parentColumns = "categoryID", childColumns = "categoryID")
+        })
 public class Products {
-    @PrimaryKey()
-    private int ProductID;
+    @PrimaryKey
+    @ColumnInfo(name = "productID")
+    private int productID;
 
-    @ColumnInfo(name = "ProductName")
-    private String ProductName;
+    @ColumnInfo(name = "productName")
+    private String productName;
 
-    @ColumnInfo(name = "SupplierID")
-    private int SupplierID;
+    @ColumnInfo(name = "supplierID")
+    private int supplierID;
 
-    @ColumnInfo(name = "CategoryID")
-    private int CategoryID;
+    @ColumnInfo(name = "categoryID")
+    private int categoryID;
 
-    @ColumnInfo(name = "QuantityPerUnit")
-    private int QuantityPerUnit;
+    @ColumnInfo(name = "quantityPerUnit")
+    private int quantityPerUnit;
 
-    @ColumnInfo(name = "UnitPrice")
-    private double UnitPrice;
+    @ColumnInfo(name = "unitPrice")
+    private double unitPrice;
 
-    @ColumnInfo(name = "ProductImage")
-    private String ProductImage;
+    @ColumnInfo(name = "productImage")
+    private String productImage;
 
-    public Products() {
-    }
-
-    public Products(int productID, String productImage){
-        ProductID = productID;
-        ProductImage = productImage;
-    }
+    // Constructors
     public Products(int productID, String productName, int supplierID, int categoryID, int quantityPerUnit, double unitPrice, String productImage) {
-        ProductID = productID;
-        ProductName = productName;
-        SupplierID = supplierID;
-        CategoryID = categoryID;
-        QuantityPerUnit = quantityPerUnit;
-        UnitPrice = unitPrice;
-        ProductImage = productImage;
+        this.productID = productID;
+        this.productName = productName;
+        this.supplierID = supplierID;
+        this.categoryID = categoryID;
+        this.quantityPerUnit = quantityPerUnit;
+        this.unitPrice = unitPrice;
+        this.productImage = productImage;
     }
+
+    // Getters and Setters
 
     public int getProductID() {
-        return ProductID;
+        return productID;
     }
 
     public void setProductID(int productID) {
-        ProductID = productID;
+        this.productID = productID;
     }
 
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
     public void setProductName(String productName) {
-        ProductName = productName;
+        this.productName = productName;
     }
 
     public int getSupplierID() {
-        return SupplierID;
+        return supplierID;
     }
 
     public void setSupplierID(int supplierID) {
-        SupplierID = supplierID;
+        this.supplierID = supplierID;
     }
 
     public int getCategoryID() {
-        return CategoryID;
+        return categoryID;
     }
 
     public void setCategoryID(int categoryID) {
-        CategoryID = categoryID;
+        this.categoryID = categoryID;
     }
 
     public int getQuantityPerUnit() {
-        return QuantityPerUnit;
+        return quantityPerUnit;
     }
 
     public void setQuantityPerUnit(int quantityPerUnit) {
-        QuantityPerUnit = quantityPerUnit;
+        this.quantityPerUnit = quantityPerUnit;
     }
 
     public double getUnitPrice() {
-        return UnitPrice;
+        return unitPrice;
     }
 
     public void setUnitPrice(double unitPrice) {
-        UnitPrice = unitPrice;
+        this.unitPrice = unitPrice;
     }
 
     public String getProductImage() {
-        return ProductImage;
+        return productImage;
     }
 
     public void setProductImage(String productImage) {
-        ProductImage = productImage;
-    }
-
-    @Override
-    public String toString() {
-        return "Products{" +
-                "ProductID=" + ProductID +
-                ", ProductName='" + ProductName + '\'' +
-                ", SupplierID=" + SupplierID +
-                ", CategoryID=" + CategoryID +
-                ", QuantityPerUnit=" + QuantityPerUnit +
-                ", UnitPrice=" + UnitPrice +
-                ", ProductImage='" + ProductImage + '\'' +
-                '}';
+        this.productImage = productImage;
     }
 }

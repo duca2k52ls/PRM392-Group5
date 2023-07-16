@@ -34,7 +34,7 @@ public class ProductDetail extends AppCompatActivity {
         int productId = getIntent().getIntExtra("product_id", 0);
         txt_ID.setText(String.valueOf(productId));
 
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database-name").build();
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database-name-v2").build();
         productDao = db.productDAO();
 
         new RetrieveProductTask().execute(productId);
@@ -66,4 +66,6 @@ public class ProductDetail extends AppCompatActivity {
         super.onDestroy();
         db.close();
     }
+
+
 }

@@ -29,7 +29,7 @@ public class adminHome extends AppCompatActivity {
         imageLayout = findViewById(R.id.imageLayout);
         List<String> imageUrlList = new ArrayList<>();
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
+                AppDatabase.class, "database-name-v2").build();
 
         Thread t = new Thread(new Runnable() {
             @Override
